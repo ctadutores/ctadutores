@@ -1,0 +1,291 @@
+{
+	"info": {
+		"_postman_id": "11869ad2-fa55-4556-bfb4-b66aac025afb",
+		"name": "Battery Giant_Real",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27879476"
+	},
+	"item": [
+		{
+			"name": "Autenticación Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{ApiUrl}}autenticacion?usuario=auditoria&password=CT2021*",
+					"host": [
+						"{{ApiUrl}}autenticacion"
+					],
+					"query": [
+						{
+							"key": "usuario",
+							"value": "auditoria"
+						},
+						{
+							"key": "password",
+							"value": "CT2021*"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista de Sucursales",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"if (jsonData.data && jsonData.data.sucursales && jsonData.data.sucursales.length >= 2) {\r",
+							"    pm.globals.set(\"ID1\", jsonData.data.sucursales[0].id);\r",
+							"    pm.globals.set(\"ID2\", jsonData.data.sucursales[1].id);\r",
+							"} else {\r",
+							"    console.error(\"The response structure does not match the expected format.\");\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MjMsImxpY2VuY2lhIjoiMTU5MzU0ODY0MDVFRkI5RjYwM0Y4REIiLCJ0b2tlbmtleSI6MjE1OTc2MjcxMCwia2V5IjoienloRjFsUkprY2c3dm5XIn0.j9WsC8XxeB0eKSHWR7LE1MXlgCfsBb4_nV2KIS1TANY",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{ApiUrl}}/apisucursal/lista",
+					"host": [
+						"{{ApiUrl}}"
+					],
+					"path": [
+						"apisucursal",
+						"lista"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista de Proveedores",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MjMsImxpY2VuY2lhIjoiMTU5MzU0ODY0MDVFRkI5RjYwM0Y4REIiLCJ0b2tlbmtleSI6MjE1OTc0NTUwOCwia2V5IjoiUkNuUTFFYVBCU0xvSGlOIn0.oevL0QfRPxzMD0tAg8_8XIt5Evfm81rL2Xkc1suhHIE",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{ApiUrl}}/apiproveedor/lista",
+					"host": [
+						"{{ApiUrl}}"
+					],
+					"path": [
+						"apiproveedor",
+						"lista"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Total Ventas Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MjMsImxpY2VuY2lhIjoiMTU5MzU0ODY0MDVFRkI5RjYwM0Y4REIiLCJ0b2tlbmtleSI6MjE1OTc2MDg0OSwia2V5IjoiRUJRZU9jTFVpVGYxc3VBIn0.PBAWOgwnL5nG271rGyPSJwwQ3Vb7AxVVQBSC_I-EXpY",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Urlapi}}/apireporte/diarioventas?sucursalId={{ID}}&desde=2019-01-01&hasta=2023-12-31",
+					"host": [
+						"{{Urlapi}}"
+					],
+					"path": [
+						"apireporte",
+						"diarioventas"
+					],
+					"query": [
+						{
+							"key": "sucursalId",
+							"value": "{{ID}}"
+						},
+						{
+							"key": "desde",
+							"value": "2019-01-01"
+						},
+						{
+							"key": "hasta",
+							"value": "2023-12-31"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Total Ventas Copy 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MjMsImxpY2VuY2lhIjoiMTU5MzU0ODY0MDVFRkI5RjYwM0Y4REIiLCJ0b2tlbmtleSI6MjE1OTc2MDQ5MCwia2V5IjoiaklRR3UxbkV0Qk9SeGRZIn0.dzZE0zWL64oijkAp-BarPaMHydz9KVrSVYBk_VvxWG8",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Urlapi}}/apireporte/diarioventas?sucursalId={{ID2}}&desde=2019-01-01&hasta=2023-12-31",
+					"host": [
+						"{{Urlapi}}"
+					],
+					"path": [
+						"apireporte",
+						"diarioventas"
+					],
+					"query": [
+						{
+							"key": "sucursalId",
+							"value": "{{ID2}}"
+						},
+						{
+							"key": "desde",
+							"value": "2019-01-01"
+						},
+						{
+							"key": "hasta",
+							"value": "2023-12-31"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Total Ventas",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MjMsImxpY2VuY2lhIjoiMTU5MzU0ODY0MDVFRkI5RjYwM0Y4REIiLCJ0b2tlbmtleSI6MjE1OTc0NzI2OCwia2V5IjoiaHhHYUMwWlJkZkZvQUxEIn0.l6LaTGF6YaH9ka3fFa12zqCAt1vSpDC1HSrEj2sik8g",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{ApiUrl}}/apireporte/totalventas?tipo=04",
+					"host": [
+						"{{ApiUrl}}"
+					],
+					"path": [
+						"apireporte",
+						"totalventas"
+					],
+					"query": [
+						{
+							"key": "tipo",
+							"value": "04"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "ApiUrl",
+			"value": "https://batterygiant.switch-soft.com/"
+		}
+	]
+}
